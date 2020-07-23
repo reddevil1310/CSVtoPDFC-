@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Office.Interop.Excel;
+
+namespace XlsToPDF
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Application app = new Application();
+            Workbook wb = app.Workbooks.Open("H:\\HMI\\HMI-000\\History\\CSV\\H0003.csv", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            wb.SaveAs("H:\\HMI\\HMI-000\\History\\CSV\\H0003.xlsx", XlFileFormat.xlOpenXMLWorkbook, Type.Missing, Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            wb.Close();
+            app.Quit();
+
+            // Instantiate the Workbook object with the Excel file
+            Aspose.Cells.Workbook workbook = new Aspose.Cells.Workbook("H:\\HMI\\HMI-000\\History\\CSV\\H0003.xlsx");
+
+            // Save the document in PDF format
+            workbook.Save("H:\\HMI\\HMI-000\\History\\CSV\\H0003.pdf", Aspose.Cells.SaveFormat.Pdf);
+        }
+    }
+}
